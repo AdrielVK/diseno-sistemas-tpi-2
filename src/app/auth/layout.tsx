@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AuthStore, useAuthStore } from "../store";
 
 export default function AuthLayout({
@@ -9,7 +9,7 @@ export default function AuthLayout({
   }: Readonly<{
     children: React.ReactNode;
   }>) {
-    let user = useAuthStore((state:AuthStore) => state.user)
+    const user = useAuthStore((state:AuthStore) => state.user)
     console.log(user)
     const router = useRouter(); 
 

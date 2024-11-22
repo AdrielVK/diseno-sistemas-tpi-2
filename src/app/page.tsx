@@ -1,13 +1,13 @@
 "use client"
 import Link from "next/link";
 import AuthGuard from "./guards/authGuard";
-import { Calendar,NotebookPen , Car, CheckCircle, ClipboardList, DollarSign, FileText, Info, Menu, Printer, Search, User } from "lucide-react";
+import { Calendar,NotebookPen , Car, CheckCircle, ClipboardList, DollarSign, FileText, Info, Printer, Search } from "lucide-react";
 import { Navbar } from "./components/Navbar";
 import { AuthStore, useAuthStore } from "./store";
 
 export default function Home() {
 
-  let user = useAuthStore((state:AuthStore) => state.user)
+  const user = useAuthStore((state:AuthStore) => state.user)
   
   return (
     <AuthGuard>

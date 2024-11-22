@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    let user = useAuthStore((state:AuthStore) => state.user)
-    let logout = useAuthStore((state:AuthStore) => state.logout)
+    const user = useAuthStore((state:AuthStore) => state.user)
+    const logout = useAuthStore((state:AuthStore) => state.logout)
     const router = useRouter();
 
     const onClickLogout = () => {

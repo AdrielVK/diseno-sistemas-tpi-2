@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { AuthStore, ROLE, useAuthStore } from "../store";
+import { AuthStore, useAuthStore } from "../store";
 
 export default function AtencionGuard({
     children,
@@ -18,7 +18,7 @@ export default function AtencionGuard({
         if (!user || user.role === "MECANICO") {
           return router.push('/auth');
         }
-    }, []);
+    }, [user, router]);
 
     return (
         <>

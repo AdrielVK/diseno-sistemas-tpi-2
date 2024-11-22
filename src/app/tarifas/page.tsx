@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowLeft, ChevronDown } from 'lucide-react'
+import {  ChevronDown } from 'lucide-react'
 import Link from "next/link"
 import { Navbar } from "../components/Navbar"
 

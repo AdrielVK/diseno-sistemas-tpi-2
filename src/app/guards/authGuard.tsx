@@ -18,7 +18,7 @@ export default function AuthGuard({
         if (!user) {
           return router.push('/auth');
         }
-    }, []);
+    }, [user, router]);
 
     return (
         <>

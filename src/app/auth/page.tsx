@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import {EyeIcon, EyeOffIcon} from "lucide-react"
-import { AuthState, AuthStore, ROLE, useAuthStore } from "../store"
+import {  AuthStore, useAuthStore } from "../store"
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
 
@@ -10,7 +10,7 @@ export default function LoginForm() {
   const [role, setRole] = useState<string>('ATENCION')
 
   const login = useAuthStore((state:AuthStore) => state.login)
-  let user = useAuthStore((state:AuthStore) => state.user)
+  const user = useAuthStore((state:AuthStore) => state.user)
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>)=> {
     e.preventDefault()

@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { AuthStore, ROLE, useAuthStore } from "../store";
+import { AuthStore, useAuthStore } from "../store";
 
 export default function MecanicoGuard({
     children,
@@ -18,7 +18,7 @@ export default function MecanicoGuard({
         if (!user || user.role === "ATENCION") {
           return router.push('/auth');
         }
-    }, []);
+    }, [user, router]);
 
     return (
         <>
