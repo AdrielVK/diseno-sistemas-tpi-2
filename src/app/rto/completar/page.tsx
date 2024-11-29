@@ -202,13 +202,15 @@ export default function RtoFormDetailsPage() {
               </div>
             </div>
           </div>
+          <div className="flex w-full justify-center">
 
-          <Link
-            href='/rto/completar/finalizar'
-            className="w-full bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors"
-          >
-            Continuar
-          </Link>
+            <Link
+              href='/rto/completar/finalizar'
+              className="w-1/4 text-center bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors"
+              >
+              Continuar
+            </Link>
+          </div>
         </form>
       </main>
     </div>

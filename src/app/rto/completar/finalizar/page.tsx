@@ -94,14 +94,16 @@ export default function RtoFormResultPage() {
               </div>
             </div>
           </div>
-        
-          <button
-            onClick={finalizar}
-            type="submit"
-            className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors"
-          >
-            Finalizar
-          </button>
+          <div className="w-full flex justify-center">
+            <button
+              onClick={finalizar}
+              type="submit"
+              className="w-1/4 bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue transition-colors"
+            >
+              Finalizar
+            </button>
+          </div>
+          
         </form>
         {
             handle&&

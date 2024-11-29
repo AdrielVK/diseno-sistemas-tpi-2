@@ -11,13 +11,22 @@ export default function FacturacionPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [paymentStep, setPaymentStep] = useState<'methods' | 'cash' | 'card'>('methods')
   const [pagoExitoso, setpagoExitoso] = useState(false)
+  const [error, setError] = useState<string>('') 
+
+  const [errorDni, setErrorDni] = useState<string>('')
+  const [errorTajeta, setErrorTarjeta] = useState<string>('')
+  const [errorSeg, setErrorSeg] = useState<string>('')
+
   const [cardData, setCardData] = useState({
     dni: '',
     cardNumber: '',
     securityCode: ''
   })
+
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
     if (patente.trim()) {
       setShowResults(true)
     }
@@ -54,6 +63,7 @@ export default function FacturacionPage() {
             <ArrowLeft className="h-6 w-6" />
           </Link>
           <h1 className="text-2xl font-bold">Facturación</h1>
+          <p className="text-red-600">{error}</p>
         </div>
 
         <form onSubmit={handleSearch} className="space-y-4">
@@ -61,13 +71,24 @@ export default function FacturacionPage() {
             required
             type="text"
             value={patente}
-            onChange={(e) => setPatente(e.target.value)}
+            onChange={(e) => {
+
+              const inputValue = e.target.value;
+
+              if (inputValue.length <= 6) {
+                setPatente(inputValue);
+                setError('');
+              } else {
+                setError('La patente debe ser de hasta 6 dígitos');
+              }
+            }
+            }
             placeholder="Ingrese la patente del vehículo"
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent"
           />
           <button
             type="submit"
-            className="w-full bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors"
+            className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue transition-colors"
           >
             Buscar
           </button>
@@ -135,34 +156,75 @@ export default function FacturacionPage() {
                   
                   <div className="space-y-4">
                     <div className="space-y-1">
-                      <label className="block text-sm">DNI del titular</label>
+                      <label className="block text-sm">DNI del titular <p className="text-red-600">{errorDni}</p></label>
                       <input
                         type="text"
                         placeholder="Ingrese DNI"
                         value={cardData.dni}
-                        onChange={(e) => setCardData({...cardData, dni: e.target.value})}
+                        onChange={(e) => {
+                            const value = e.target.value
+
+                            if (/^\d*$/.test(value)) {
+                              if (value.length <= 8) {
+                                setErrorDni('');
+                                setCardData({ ...cardData, dni: value });
+                              } else {
+                                setErrorDni('El DNI debe contener hasta 8 cifras.');
+                              }
+                            } else {
+                              setErrorDni('El DNI debe contener solo números.');
+                            }
+                          }
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                       />
                     </div>
                     
                     <div className="space-y-1">
-                      <label className="block text-sm">Número de la tarjeta</label>
+                      <label className="block text-sm">Número de la tarjeta <p className="text-red-600">{errorTajeta}</p></label>
                       <input
                         type="text"
                         placeholder="Ingrese número de la tarjeta"
                         value={cardData.cardNumber}
-                        onChange={(e) => setCardData({...cardData, cardNumber: e.target.value})}
+                        onChange={(e) => {
+                            const value = e.target.value
+
+                            if (/^\d*$/.test(value)) {
+                              if (value.length <= 15) {
+                                setErrorTarjeta('');
+                                setCardData({ ...cardData, cardNumber: value });
+                              } else {
+                                setErrorTarjeta('El nro de tarjeta debe contener hasta 16 cifras.');
+                              }
+                            } else {
+                              setErrorTarjeta('El nro de tarjeta debe contener solo números.');
+                            }
+                        
+                          }
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                       />
                     </div>
                     
                     <div className="space-y-1">
-                      <label className="block text-sm">Código de seguridad</label>
+                      <label className="block text-sm">Código de seguridad<p className="text-red-600">{errorSeg}</p></label>
                       <input
-                        type="text"
+                        type="password"
                         placeholder="Ingrese número de la tarjeta"
                         value={cardData.securityCode}
-                        onChange={(e) => setCardData({...cardData, securityCode: e.target.value})}
+                        onChange={(e) => {
+                          const value = e.target.value
+                          if (/^\d*$/.test(value)) {
+                            if (value.length <= 3) {
+                              setErrorSeg('');
+                              setCardData({ ...cardData, securityCode: value });
+                            } else {
+                              setErrorSeg('El cod. de seguridad debe contener hasta 3 cifras.');
+                            }
+                          } else {
+                            setErrorSeg('El cod. de seguridad debe contener solo números.');
+                          }
+                        }}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                       />
                     </div>
@@ -170,13 +232,14 @@ export default function FacturacionPage() {
 
                   {
                     pagoExitoso?
-                    <>
-                    
-                    <h1 className="font-bold text-green-800 my-2">Pago exitoso</h1>
-                    <Link href="/" className="w-full bg-red-700 text-white py-2 px-4 rounded-lg hover:bg-red-700/90 transition-colors mb-4">
-                      Volver al menu
-                    </Link>
-                    </>
+                    <div className="grid justify-items-center">
+                      
+                      <h1 className="font-bold text-green-800 mb-4">Pago exitoso</h1>
+                      <Link href="/" className="w-full text-center bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors mb-4">
+                        Volver al menu
+                      </Link>
+
+                    </div>
                     :
                     <>
                     <button
@@ -223,16 +286,16 @@ export default function FacturacionPage() {
                     <h3 className="text-lg">Métodos de pago:</h3>
                     <button 
                       onClick={handleCashPayment}
-                      className="w-full bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors"
+                      className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors"
                     >
                       Contado
                     </button>
-                    <button onClick={handleCardPayment} className="w-full bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors">
+                    <button onClick={handleCardPayment} className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors">
                       Tarjeta
                     </button>
                     <button 
                       onClick={closeModal}
-                      className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors"
+                      className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue transition-colors"
                     >
                       Cancelar
                     </button>
@@ -244,13 +307,16 @@ export default function FacturacionPage() {
                   <p className="text-xl mb-6">Total: $20.000</p>
                   {
                     pagoExitoso?
-                    <>
                     
-                    <h1 className="font-bold text-green-800 my-10">Pago exitoso</h1>
-                    <Link href="/" className="w-full bg-red-700 text-white py-2 px-4 rounded-lg hover:bg-red-700/90 transition-colors mb-4">
-                      Volver al menu
-                    </Link>
-                    </>
+                    <div className="grid grid-cols-1 content-between justify-items-center">
+                      
+                      <h1 className="font-bold text-green-800 mb-4">Pago exitoso</h1>
+                      <Link href="/" className="w-full bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors mb-4">
+                        Volver al menu
+                      </Link>
+
+                    </div>
+                    
                     :
                     <>
                     <button onClick={handlePago} className="w-full bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors mb-4">

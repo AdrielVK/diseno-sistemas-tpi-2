@@ -63,18 +63,20 @@ export default function RtoForm() {
               ))}
             </div>
           </div>
+          
 
-          <button
-            onClick={() => router.push('/rto/completar')}
-            disabled={!selectedVehicle}
-            className={`w-full py-2 px-4 rounded-lg transition-colors ${
-              selectedVehicle
-                ? "bg-blue text-white hover:bg-blue/90"
+            <button
+              onClick={() => router.push('/rto/completar')}
+              disabled={!selectedVehicle}
+              className={`w-full py-2 px-4 rounded-lg transition-colors ${
+                selectedVehicle
+                ? "bg-lgblue text-white hover:bg-blue"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
-            }`}
-          >
-            Continuar
-          </button>
+              }`}
+              >
+              Continuar
+            </button>
+          
         </div>
       </main>
     </div>

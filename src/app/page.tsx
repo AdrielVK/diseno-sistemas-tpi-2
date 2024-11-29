@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import AuthGuard from "./guards/authGuard";
-import { Calendar,NotebookPen , Car, CheckCircle, ClipboardList, DollarSign, FileText, Info, Printer, Search } from "lucide-react";
+import { Calendar,NotebookPen ,ServerCrash , Car, CheckCircle, ClipboardList, DollarSign, FileText, Info, Printer, Search } from "lucide-react";
 import { Navbar } from "./components/Navbar";
 import { AuthStore, useAuthStore } from "./store";
 
@@ -121,7 +121,7 @@ export default function Home() {
                 href="/"
                 className="flex items-center gap-2 bg-lgblue text-white p-4 rounded-lg w-full hover:bg-blue/90 transition-colors"
               >
-                
+                <ServerCrash className="h-6 w-6"/>
                 <span>Notificar equipo defectuoso</span>
               </Link>
             

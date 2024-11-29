@@ -59,6 +59,7 @@ export default function LoginForm() {
               Email
             </label>
             <input
+              required
               type="email"
               id="email"
               value={name}
@@ -77,7 +78,9 @@ export default function LoginForm() {
               </a>
             </div>
             <div className="relative">
+              
               <input
+                required
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Ingrese su contraseña"
