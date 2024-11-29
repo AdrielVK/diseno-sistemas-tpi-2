@@ -10,19 +10,23 @@ export default function FacturacionPage() {
   const [showResults, setShowResults] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [paymentStep, setPaymentStep] = useState<'methods' | 'cash' | 'card'>('methods')
-  const [pagoExitoso, setpagoExitoso] = useState(false)
-  const [error, setError] = useState<string>('') 
+  const [pagoExitoso, setPagoExitoso] = useState(false)
+  const [error, setError] = useState<string>('')
+  const [isFocused, setIsFocused] = useState(false)
 
   const [errorDni, setErrorDni] = useState<string>('')
-  const [errorTajeta, setErrorTarjeta] = useState<string>('')
+  const [errorTarjeta, setErrorTarjeta] = useState<string>('')
   const [errorSeg, setErrorSeg] = useState<string>('')
+
+  const [isFocusedDni, setIsFocusedDni] = useState(false)
+  const [isFocusedTarjeta, setIsFocusedTarjeta] = useState(false)
+  const [isFocusedSeg, setIsFocusedSeg] = useState(false)
 
   const [cardData, setCardData] = useState({
     dni: '',
     cardNumber: '',
     securityCode: ''
   })
-
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -33,7 +37,7 @@ export default function FacturacionPage() {
   }
 
   const handlePago = () => {
-    setpagoExitoso(!pagoExitoso)
+    setPagoExitoso(!pagoExitoso)
   }
 
   const handleCashPayment = () => {
@@ -53,6 +57,7 @@ export default function FacturacionPage() {
     setPaymentStep('methods')
   }
 
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -63,29 +68,41 @@ export default function FacturacionPage() {
             <ArrowLeft className="h-6 w-6" />
           </Link>
           <h1 className="text-2xl font-bold">Facturación</h1>
-          <p className="text-red-600">{error}</p>
+          
         </div>
 
         <form onSubmit={handleSearch} className="space-y-4">
-          <input
-            required
-            type="text"
-            value={patente}
-            onChange={(e) => {
+          <div className="space-y-1">
+            <input
+              required
+              type="text"
+              value={patente}
+              onFocus={() => {setIsFocused(true)}}
+              onBlur={() => 
+                {
 
-              const inputValue = e.target.value;
-
-              if (inputValue.length <= 6) {
-                setPatente(inputValue);
-                setError('');
-              } else {
-                setError('La patente debe ser de hasta 6 caracteres');
+                  setIsFocused(false)
+                  setError('')
+                }
               }
-            }
-            }
-            placeholder="Ingrese la patente del vehículo"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent"
-          />
+              onChange={(e) => {
+                const inputValue = e.target.value;
+
+                if (inputValue.length <= 6) {
+                  setPatente(inputValue);
+                  setError('');
+                } else {
+                  setError('La patente debe ser de hasta 6 caracteres');
+                }
+              }}
+              placeholder="Ingrese la patente del vehículo"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent"
+            />
+            {isFocused && error && (
+              <p className="text-red-600 text-sm">{error}</p>
+            )}
+          </div>
+
           <button
             type="submit"
             className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue transition-colors"
@@ -156,8 +173,16 @@ export default function FacturacionPage() {
                   
                   <div className="space-y-4">
                     <div className="space-y-1">
-                      <label className="block text-sm">DNI del titular <p className="text-red-600">{errorDni}</p></label>
+                      <label className="block text-sm">DNI del titular {errorDni && isFocusedDni &&<p className="text-red-600">{errorDni}</p>}</label>
                       <input
+                        onFocus={() => {setIsFocusedDni(true)}}
+                        onBlur={() => 
+                          {
+          
+                            setIsFocusedDni(false)
+                            setErrorDni('')
+                          }
+                        }
                         type="text"
                         placeholder="Ingrese DNI"
                         value={cardData.dni}
@@ -182,8 +207,16 @@ export default function FacturacionPage() {
                     </div>
                     
                     <div className="space-y-1">
-                      <label className="block text-sm">Número de la tarjeta <p className="text-red-600">{errorTajeta}</p></label>
+                      <label className="block text-sm">Número de la tarjeta {errorTarjeta && isFocusedTarjeta &&<p className="text-red-600">{errorTarjeta}</p>}</label>
                       <input
+                        onFocus={() => {setIsFocusedTarjeta(true)}}
+                        onBlur={() => 
+                          {
+          
+                            setIsFocusedTarjeta(false)
+                            setErrorTarjeta('')
+                          }
+                        }
                         required
                         type="text"
                         placeholder="Ingrese número de la tarjeta"
@@ -209,12 +242,20 @@ export default function FacturacionPage() {
                     </div>
                     
                     <div className="space-y-1">
-                      <label className="block text-sm">Código de seguridad<p className="text-red-600">{errorSeg}</p></label>
+                      <label className="block text-sm">Código de seguridad{errorSeg && isFocusedSeg &&<p className="text-red-600">{errorSeg}</p>}</label>
                       <input
                         required
                         type="password"
                         placeholder="Ingrese número de la tarjeta"
                         value={cardData.securityCode}
+                        onFocus={() => {setIsFocusedSeg(true)}}
+                        onBlur={() => 
+                          {
+          
+                            setIsFocusedSeg(false)
+                            setErrorSeg('')
+                          }
+                        }
                         onChange={(e) => {
                           const value = e.target.value
                           if (/^\d*$/.test(value)) {

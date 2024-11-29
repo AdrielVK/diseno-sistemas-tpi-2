@@ -46,8 +46,11 @@ export default function TarifasPage() {
               </label>
               <div className="relative">
                 <select
+                  required
                   value={formData.category}
-                  onChange={(e) => setFormData({...formData, category: e.target.value})}
+                  onChange={(e) => {
+                    setShowResults(false)
+                    setFormData({...formData, category: e.target.value})}}
                   className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md appearance-none pr-10"
                 >
                   <option value="">Seleccione una opción</option>
@@ -68,7 +71,9 @@ export default function TarifasPage() {
                 required
                 type="text"
                 value={formData.brand}
-                onChange={(e) => setFormData({...formData, brand: e.target.value})}
+                onChange={(e) => {
+                  setShowResults(false)
+                  setFormData({...formData, brand: e.target.value})}}
                 placeholder="Ingrese la marca"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md"
               />
@@ -82,7 +87,9 @@ export default function TarifasPage() {
                 required
                 type="text"
                 value={formData.model}
-                onChange={(e) => setFormData({...formData, model: e.target.value})}
+                onChange={(e) => {
+                  setShowResults(false)
+                  setFormData({...formData, model: e.target.value})}}
                 placeholder="Ingrese el modelo"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md"
               />
