@@ -65,6 +65,7 @@ export default function TarifasPage() {
                 Ingrese la marca del vehículo
               </label>
               <input
+                required
                 type="text"
                 value={formData.brand}
                 onChange={(e) => setFormData({...formData, brand: e.target.value})}
@@ -78,6 +79,7 @@ export default function TarifasPage() {
                 Ingrese el modelo
               </label>
               <input
+                required
                 type="text"
                 value={formData.model}
                 onChange={(e) => setFormData({...formData, model: e.target.value})}
@@ -88,7 +90,7 @@ export default function TarifasPage() {
 
             <button
               type="submit"
-              className="w-full bg-blue text-white py-2 px-4 rounded-md hover:bg-blue/90 transition-colors"
+              className="w-full bg-lgblue text-white py-2 px-4 rounded-md hover:bg-blue/90 transition-colors"
             >
               Consultar
             </button>
@@ -102,7 +104,7 @@ export default function TarifasPage() {
             <div className="space-x-4">
               <button
                 onClick={handleNewQuery}
-                className="text-blue hover:underline"
+                className="text-lgblue hover:underline"
               >
                 Realizar otra consulta
               </button>

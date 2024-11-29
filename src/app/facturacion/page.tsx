@@ -161,6 +161,7 @@ export default function FacturacionPage() {
                         type="text"
                         placeholder="Ingrese DNI"
                         value={cardData.dni}
+                        required
                         onChange={(e) => {
                             const value = e.target.value
 
@@ -183,6 +184,7 @@ export default function FacturacionPage() {
                     <div className="space-y-1">
                       <label className="block text-sm">Número de la tarjeta <p className="text-red-600">{errorTajeta}</p></label>
                       <input
+                        required
                         type="text"
                         placeholder="Ingrese número de la tarjeta"
                         value={cardData.cardNumber}
@@ -209,6 +211,7 @@ export default function FacturacionPage() {
                     <div className="space-y-1">
                       <label className="block text-sm">Código de seguridad<p className="text-red-600">{errorSeg}</p></label>
                       <input
+                        required
                         type="password"
                         placeholder="Ingrese número de la tarjeta"
                         value={cardData.securityCode}
@@ -235,7 +238,7 @@ export default function FacturacionPage() {
                     <div className="grid justify-items-center">
                       
                       <h1 className="font-bold text-green-800 mb-4">Pago exitoso</h1>
-                      <Link href="/" className="w-full text-center bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors mb-4">
+                      <Link href="/" className="w-full text-center bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue transition-colors mb-4">
                         Volver al menu
                       </Link>
 
@@ -244,7 +247,7 @@ export default function FacturacionPage() {
                     <>
                     <button
                       onClick={handlePago}
-                      className="w-full bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors"
+                      className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors"
                       >
                       Realizar pago
                     </button>
@@ -295,7 +298,7 @@ export default function FacturacionPage() {
                     </button>
                     <button 
                       onClick={closeModal}
-                      className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue transition-colors"
+                      className="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-blue transition-colors"
                     >
                       Cancelar
                     </button>
@@ -311,7 +314,7 @@ export default function FacturacionPage() {
                     <div className="grid grid-cols-1 content-between justify-items-center">
                       
                       <h1 className="font-bold text-green-800 mb-4">Pago exitoso</h1>
-                      <Link href="/" className="w-full bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors mb-4">
+                      <Link href="/" className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue transition-colors mb-4">
                         Volver al menu
                       </Link>
 
@@ -319,7 +322,7 @@ export default function FacturacionPage() {
                     
                     :
                     <>
-                    <button onClick={handlePago} className="w-full bg-blue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors mb-4">
+                    <button onClick={handlePago} className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors mb-4">
                       Realizar pago
                     </button>
                     <button

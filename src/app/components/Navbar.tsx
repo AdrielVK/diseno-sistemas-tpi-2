@@ -38,7 +38,8 @@ export function Navbar() {
             </Link>
           </div>
           <div className="flex items-center gap-2 text-white">
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center">
+                
                 <span>{user?.role}</span>
                 <span className="cursor-pointer font-semibold" onClick={openModal}>Cerrar sesion</span>
             </div>
@@ -59,7 +60,7 @@ export function Navbar() {
               </button>
               <button
                 onClick={openModal}
-                className="w-full my-2 bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue transition-colors"
+                className="w-full my-2 bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition-colors"
                 >
                 Cancelar
               </button>
@@ -71,7 +72,7 @@ export function Navbar() {
         {/* Dropdown Menu */}
         {isMenuOpen && (
           user?.role == 'ATENCION' ?
-          <div className="absolute top-16 left-4 bg-white shadow-lg rounded-lg p-2 w-48">
+          <div className=" absolute top-16 left-4 bg-white shadow-lg rounded-lg p-2 w-48">
             <Link 
                 href="/facturacion"
                 className="flex items-center gap-2  text-black hover:bg-gray p-4 rounded-lg w-full  transition-colors"
