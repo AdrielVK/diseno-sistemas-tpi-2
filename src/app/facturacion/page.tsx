@@ -79,7 +79,7 @@ export default function FacturacionPage() {
                 setPatente(inputValue);
                 setError('');
               } else {
-                setError('La patente debe ser de hasta 6 dígitos');
+                setError('La patente debe ser de hasta 6 caracteres');
               }
             }
             }
