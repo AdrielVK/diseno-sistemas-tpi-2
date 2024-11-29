@@ -36,7 +36,12 @@ export default function FacturacionPage() {
     }
   }
 
-  const handlePago = () => {
+  const handlePago = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setPagoExitoso(!pagoExitoso)
+  }
+  const handlePagoNoForm = () => {
+    
     setPagoExitoso(!pagoExitoso)
   }
 
@@ -167,7 +172,7 @@ export default function FacturacionPage() {
               {
               paymentStep === 'card'?
               (
-                <div className="space-y-6">
+                <form onSubmit={handlePago} className="space-y-6">
                   <h2 className="text-2xl font-bold text-center">Pago con tarjeta</h2>
                   <p className="text-xl text-center">Total: $20.000</p>
                   
@@ -287,7 +292,7 @@ export default function FacturacionPage() {
                     :
                     <>
                     <button
-                      onClick={handlePago}
+                      
                       className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors"
                       >
                       Realizar pago
@@ -302,7 +307,7 @@ export default function FacturacionPage() {
                     </>
                   }
                   
-                </div>
+                </form>
               )
               :
               
@@ -363,7 +368,7 @@ export default function FacturacionPage() {
                     
                     :
                     <>
-                    <button onClick={handlePago} className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors mb-4">
+                    <button onClick={handlePagoNoForm} className="w-full bg-lgblue text-white py-2 px-4 rounded-lg hover:bg-blue/90 transition-colors mb-4">
                       Realizar pago
                     </button>
                     <button
