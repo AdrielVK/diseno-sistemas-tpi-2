@@ -21,7 +21,7 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray to-lgblue">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-grayy to-lgblue">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-4">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 text-2xl font-bold mb-2">

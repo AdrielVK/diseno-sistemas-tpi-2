@@ -11,7 +11,7 @@ export default {
       colors: {
         blue: "#112D4E",
         lgblue: "#3F72AF",
-        gray: "#DBE2EF",
+        grayy: "#DBE2EF",
         white: "#F9F7F7"
       },
     },
