@@ -122,15 +122,15 @@ export default function FacturacionPage() {
               <div className="flex justify-between mb-4">
                 <div>
                   <span className="font-medium">Categoría:</span>
-                  <span className="ml-2">_________</span>
+                  <span className="ml-2">M</span>
                 </div>
                 <div>
                   <span className="font-medium">Marca:</span>
-                  <span className="ml-2">_________</span>
+                  <span className="ml-2">Ford</span>
                 </div>
                 <div>
                   <span className="font-medium">Modelo:</span>
-                  <span className="ml-2">_________</span>
+                  <span className="ml-2">Fiesta</span>
                 </div>
               </div>
 
@@ -140,17 +140,17 @@ export default function FacturacionPage() {
                 <div className="space-y-2">
                   <div>
                     <span className="font-medium">Resultado:</span>
-                    <span className="ml-2">_________</span>
+                    <span className="ml-2 text-green-600">Aprobado</span>
                   </div>
                   
                   <div>
                     <span className="font-medium">Mecánico:</span>
-                    <span className="ml-2">_________</span>
+                    <span className="ml-2">Roberto Lewandowski</span>
                   </div>
                   
                   <div>
                     <span className="font-medium">Descripción de la revisión:</span>
-                    <div className="mt-1">_________________________</div>
+                    <div className="mt-1">Luego de la revision,el vehiculo se encuentra en condiciones aptas para la circulacion</div>
                   </div>
                 </div>
               </div>
